@@ -11,8 +11,8 @@ const MovieCard = ( {movie} ) => {
         <li className='movieCard'>
             <Link to={'/movies/' + movie.id}>
                 <img className='movieImage' width={230} height={345} src={imageUrl} alt={movie.title}/>
-                <div> {movie.title} </div>
             </Link>
+            <div className='titleCard'> {movie.title} </div>
         </li>
         </>
     )

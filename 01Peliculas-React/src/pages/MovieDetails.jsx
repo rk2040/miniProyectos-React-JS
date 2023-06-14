@@ -3,6 +3,7 @@ import { get } from '../data/httpClient';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import getMovieImg from '../utils/getMovieImg';
+import '../pages/MovieDetails.css'
 
 const MovieDetails = () => {
     const {movieId} = useParams();
@@ -22,22 +23,24 @@ const MovieDetails = () => {
 
     return (
         <>
-        <div>
-            <img src={imageUrl} alt={movie.title} />
-        </div>
-        <div>
-            <p>
-                <strong>Titulo: </strong>
-                {movie.title}
-            </p>
-            <p>
-                <strong>Genero: </strong>
-                {generos.name}
-            </p>
-            <p>
-                <strong>Descripción: </strong>
-                {movie.overview}
-            </p>
+        <div className='detailContainer'>
+            <div>
+                <img className='col movieImage' src={imageUrl} alt={movie.title} />
+            </div>
+            <div className='col movieDetail'>
+                <p className='title'>
+                    <strong>Título: </strong>
+                    {movie.title}
+                </p>
+                <p>
+                    <strong>Género: </strong>
+                    {generos.name}
+                </p>
+                <p>
+                    <strong>Descripción: </strong>
+                    {movie.overview}
+                </p>
+            </div>
         </div>
         </>
     )
