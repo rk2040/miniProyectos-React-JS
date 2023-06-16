@@ -1,7 +1,26 @@
 
-.title{
-  padding: 5rem;
-}
 .title h1{
   margin-bottom: 2rem;
+  padding: 5rem 5rem 0 5rem;
+}
+.title h2{
+  margin-bottom: 2rem;
+  padding: 0 5rem 0 5rem;
+  color: #fafafa;
+}
+
+body{
+  /* background-image: linear-gradient(
+    295deg,
+    hsl(0, 0%, 92%) 0%,
+    hsl(282, 65%, 85%) 25%,
+    hsl(280, 86%, 77%) 50%,
+    hsl(279, 96%, 68%) 75%,
+    hsl(281, 100%, 50%) 100%
+  ) ; */
+  background: #7250ff;
+  color: #fafafa;
+  line-height: 1.5;
+  background-repeat: no-repeat;
+  height: 100vh;
 }

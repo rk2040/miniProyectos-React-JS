@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import './Kanban.css'
+import './Kanban.scss'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import mockData from '../../mockData'
 import Card from '../Card/Card'
@@ -15,8 +15,8 @@ const Kanban = () => {
         const {source, destination} = result;
 
         if(source.droppableId !== destination.droppableId){
-            const sourceColIndex = data.findIndex(e => e.id === source.droppableId) // COLUMNA INDEX. para tomar el primer id que tome un id que pueda estar repetido y toma ese 1er id
-            const destinationColIndex = data.findIndex(e => e.id === destination.droppableId) // COLUMNA DESTINO
+            const sourceColIndex = data.findIndex((e) => e.id === source.droppableId) // COLUMNA INDEX. para tomar el primer id que tome un id que pueda estar repetido y toma ese 1er id
+            const destinationColIndex = data.findIndex((e) => e.id === destination.droppableId) // COLUMNA DESTINO
             const sourceCol = data[sourceColIndex]  //Para saber el id de la columna donde estamos
             const destinationCol = data[destinationColIndex] //Para saber el id de la columna destino donde vamos a "soltar"
         
@@ -37,21 +37,21 @@ const Kanban = () => {
     return (
         <>
         <DragDropContext onDragEnd={onDragEnd}>
-            <div>
+            <div className='kanban'>
                 {data.map( (section)=>(
                     <Droppable key={section.id} droppableId={section.id}>
                         {
                             (provided)=>(
                                 <div {...provided.droppableProps} className='kanban__section' ref={provided.innerRef}>
-                                    <div className='knaban__section__title'>
+                                    <div className='kanban__section__title'>
                                         {section.title}
                                     </div>
                                     <div className='kanban__section__content'>
                                         {section.tasks.map((task, index)=>(
-                                            <Draggable key={task.id} droppableId={task.id} index={index}>
+                                            <Draggable key={task.id} draggableId={task.id} index={index}>
                                                 {
                                                     (provided, snapshot)=>(
-                                                        <div ref={provided.innerRef} {...provided.dragHandleProps} {...provided.dragHandleProps} style={ {...provided.draggableProps.style,opacity:snapshot.isDragging?'0.5':'1'} }>
+                                                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={ {...provided.draggableProps.style,opacity:snapshot.isDragging?'0.5':'1'} }>
                                                             <Card>{task.title}</Card>
                                                         </div>
                                                     )

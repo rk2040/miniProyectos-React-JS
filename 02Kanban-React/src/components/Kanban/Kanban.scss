@@ -1,0 +1,31 @@
+div{
+    color: black;
+}
+
+.kanban{
+    display: flex;
+    align-items: flex-start;
+    padding: 4rem;
+
+    &__section{
+        width: 40rem;
+        background-color: #383838;
+        padding: 1rem;
+        border-radius: 1rem;
+
+        & ~ &{
+            margin-left: 1rem;
+        }
+        &__title{
+            font-size: 2rem;
+            font-weight: 600;
+            color: aqua;
+            margin: 1rem 0 2rem;
+        }
+        &__content{
+            & > * ~ * { // & > * ~ *   para que afecte todos los que tiene dentro
+                margin-top: 1rem;
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ function App() {
     <>
     <div className='title'>
       <h1>Kanban UI</h1>
-      {/* <Card/> */}
+      <h2>Arrastrar y Soltar - React JS</h2>
       <Kanban/>
     </div>
     

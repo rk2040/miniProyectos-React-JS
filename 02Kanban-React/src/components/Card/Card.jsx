@@ -5,7 +5,6 @@ import Kanban from '../Kanban/Kanban'
 const Card = (props) => {
     return (
         <div className='card'>
-            Card
             { props.children }
         </div>
     )
