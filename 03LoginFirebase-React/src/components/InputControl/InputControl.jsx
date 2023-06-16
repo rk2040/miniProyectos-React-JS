@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from './InputControl.modules.css'
 
-const InputControl = () => {
+const InputControl = (props) => {
     return (
-        <div>InputControl</div>
+        <div className={}>
+            
+        </div>
     )
 }
 
