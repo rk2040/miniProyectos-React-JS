@@ -11,7 +11,7 @@ const Home = (props) => {
                 </h1>
                 <br />
                 <h1>
-                    <Link to='/signup'>SignUp</Link>
+                    <Link to='/signup'>Registrar</Link>
                 </h1>
             </div>
             <h2> {props.name ? `Bienvenido - ${props.name}` : 'Iniciar sesión' } </h2>
