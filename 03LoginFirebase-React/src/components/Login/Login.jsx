@@ -42,7 +42,7 @@ const Login = () => {
 
                 <div className={styles.footer}>
                     <b className={styles.error}>{errorMsg}</b>
-                    <button>Login btn</button>
+                    <button onClick={loguearse} disabled={submitButtonDisable} >Login btn</button>
                     <p>
                         Crear cuenta
                         <span>
