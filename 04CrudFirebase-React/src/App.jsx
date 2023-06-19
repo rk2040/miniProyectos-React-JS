@@ -41,7 +41,7 @@ useEffect( ()=>{
       </div>
       <div className='todo_container'>
         {todos.map((todo)=>(
-          <Todo todo={todo}/>
+          <Todo todo={todo} handleDelete={handleDelete} handleEdit={handleEdit} />
         ))}
       </div>
     </div>
