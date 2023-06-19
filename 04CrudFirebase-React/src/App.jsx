@@ -1,17 +1,50 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
-import { collection, query, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot } from 'firebase/firestore'
 import { db } from './data/firebase'
+import AddTodo from './components/AddTodo/AddTodo'
+import Todo from './components/Todo/Todo'
+import Title from './components/Title/Title'
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+useEffect( ()=>{
+  const q = query(collection(db, 'todos'))
+
+  const unsub = onSnapshot(q, (querySnapshot)=>{
+    const todoArray = []
+    querySnapshot.forEach((doc)=>{
+      todoArray.push({ id: doc.id, ...doc.data() })
+    })
+    setTodos(todoArray);
+  });
+  return ()=> { unsub() }
+},[]);
+
   const handleEdit = async(todo, title)=>{
-    await updateDoc(db, 'todos', todo.id), {title: title}
+    await updateDoc(doc(db, 'todos', todo.id), {title: title})
+  }
+
+  const handleDelete = async(id)=>{
+    await deleteDoc(doc(db, 'todos', id))
   }
 
   return (
     <>
-      
+    <div className="App">
+      <div>
+        <Title/>
+      </div>
+      <div>
+        <AddTodo/>
+      </div>
+      <div className='todo_container'>
+        {todos.map((todo)=>(
+          <Todo todo={todo}/>
+        ))}
+      </div>
+    </div>
     </>
   )
 }
