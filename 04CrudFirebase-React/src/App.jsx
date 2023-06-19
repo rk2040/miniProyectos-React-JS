@@ -30,6 +30,10 @@ useEffect( ()=>{
     await deleteDoc(doc(db, 'todos', id))
   }
 
+  const toggleComplete = async(todo)=>{
+    await updateDoc(doc(db, 'todos', todo.id), {complete: !todo.complete})
+  }
+
   return (
     <>
     <div className="App">
@@ -41,7 +45,7 @@ useEffect( ()=>{
       </div>
       <div className='todo_container'>
         {todos.map((todo)=>(
-          <Todo todo={todo} handleDelete={handleDelete} handleEdit={handleEdit} />
+          <Todo todo={todo} handleDelete={handleDelete} handleEdit={handleEdit} toggleComplete={toggleComplete} />
         ))}
       </div>
     </div>
