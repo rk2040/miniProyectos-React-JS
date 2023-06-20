@@ -7,7 +7,7 @@ const PokeList = () => {
     const [allPokemons, setAllPokemons] = useState([]);
 
     const getAllPokemons = async()=>{
-        const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=25&offset=0');
+        const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=649&offset=0');
 
         const data = await respuesta.json();
 
@@ -42,8 +42,11 @@ const PokeList = () => {
                         weight={pokemonStats.weight}
                         height={pokemonStats.height}
                         stats={pokemonStats.stats
-                        .map( (stat)=> stat.stat.name)
-                        .slice(0,3)} />
+                        .map( (stat)=> stat.base_stat)
+                        .slice(0,3)}
+                        statsName={pokemonStats.stats
+                            .map((stat) => stat.stat.name)
+                            .slice(0, 3)} />
                     ))}
                 </div>
             </div>

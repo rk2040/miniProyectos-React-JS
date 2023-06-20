@@ -13,7 +13,33 @@ const PokemonCard = ({id, name, image, type, weight, height, stats, statsName}) 
                 <div className='show'>
                     <div className='stat-container-title'>
                         <p> {id} - {name} </p>
-                        <img src={image} alt={name} />
+                        <img src={image} alt={name} className='img-title'/>
+                    </div>
+                    <img src={image} alt="" />
+                    <div style={{display: 'flex', width: '100%'}} >
+                        <div className='stats-left' style={{background: '#dbdbd9', textAlign: 'center'}}>
+                            <p>Type</p>
+                            <p>Height</p>
+                            <p>Weight</p>
+                        </div>
+                        <div className='stats-right' style={{background: '#ffffff'}}>
+                            <p> {type} </p>
+                            <p> {height}0 cm </p>
+                            <p> {weight} lbs </p>
+                        </div>
+                    </div>
+
+                    <div className='base-stats'>
+                        <div>
+                            {statsName.map((stats)=>(
+                                <p className='stats'> {stats} </p>
+                            ))}
+                        </div>
+                        <div>
+                            {stats.map((stats)=>(
+                                <p className='stats'> {stats} </p>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
