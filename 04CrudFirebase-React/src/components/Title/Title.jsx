@@ -2,7 +2,9 @@ import React from 'react'
 
 const Title = () => {
     return (
-        <div>Title</div>
+        <div className='title'>
+            <h1>CRUD - Firebase</h1>
+        </div>
     )
 }
 

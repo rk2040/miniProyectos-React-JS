@@ -18,14 +18,14 @@ const Todo = ({todo, handleDelete, toggleComplete, handleEdit}) => {
     return (
         <>
         <div className='todo'>
-            <input className='inputTitle' type="text" 
+            <input className='list' type="text" 
             value={todo.title === '' ? newTitle : todo.title} onChange={handleChange}
             style={{textDecoration:todo.complete && 'line-through'}} />
-        </div>
         <div>
             <button className='button-complete' onClick={()=>toggleComplete(todo)}>Marcar</button>
-            <button onClick={()=>handleEdit(todo, newTitle)}>Editar</button>
-            <button onClick={()=>handleDelete(todo.id)} >Eliminar</button>
+            <button className='button-edit' onClick={()=>handleEdit(todo, newTitle)}>Editar</button>
+            <button className='button-delete' onClick={()=>handleDelete(todo.id)} >Eliminar</button>
+        </div>
         </div>
         </>
     )

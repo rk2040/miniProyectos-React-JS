@@ -20,7 +20,7 @@ const AddTodo = () => {
     return (
         <form onSubmit={insertar}>
             <div className='input_container'>
-                <input type="text" placeholder='Ingresar Tarea...' value={title} onChange={(e)=>setTitle(e.target.value)} />
+                <input className='txtTodo' type="text" placeholder='Ingresar Tarea...' value={title} onChange={(e)=>setTitle(e.target.value)} />
             </div>
             <div className='btn_container'>
                 <button>Insertar</button>
