@@ -14,21 +14,6 @@ const BottomBar = () => {
                 <p>Habitat</p>
             </div>
 
-            <div className="bottom-btn">
-                <p className="bg-circle-white">Y</p>
-                <p>Sort</p>
-            </div>
-
-            <div className="bottom-btn">
-                <p className="bg-circle-white">+</p>
-                <p>See Evaluation</p>
-            </div>
-
-            <div className="bottom-btn">
-                <p className="bg-circle-white">B</p>
-                <p>Back</p>
-            </div>
-
         </div>
         </>
     );

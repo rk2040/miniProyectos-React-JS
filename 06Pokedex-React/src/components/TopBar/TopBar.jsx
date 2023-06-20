@@ -22,7 +22,6 @@ const TopBar = () => {
                 </div>
 
             </div>
-            <p style={{color:'white'}}>A ➔ Z</p>
         </div>
         </>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import PokemonCard from '../PokemonCard/PokemonCard';
+import './PokeList.css'
 
 const PokeList = () => {
     const [allPokemons, setAllPokemons] = useState([]);
@@ -32,7 +33,17 @@ const PokeList = () => {
             <div className='pokemon-container'>
                 <div className='all-container'>
                     {allPokemons.map( (pokemonStats)=>(
-                        <PokemonCard key={pokemonStats.id} id={pokemonStats.id.toString()} />
+                        <PokemonCard 
+                        key={pokemonStats.id} 
+                        id={pokemonStats.id.toString().padStart(3,'0')}
+                        name={pokemonStats.name}
+                        image={pokemonStats.sprites.other['official-artwork'].front_default}
+                        type={pokemonStats.types[0].type.name}
+                        weight={pokemonStats.weight}
+                        height={pokemonStats.height}
+                        stats={pokemonStats.stats
+                        .map( (stat)=> stat.stat.name)
+                        .slice(0,3)} />
                     ))}
                 </div>
             </div>
