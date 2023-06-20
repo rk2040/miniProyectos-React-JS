@@ -56,7 +56,7 @@ const JobLists = () => {
                             </select>
                         </div>
                     </div>
-                    <div className='job__wrapper'>
+                    <div className='jobs__wrapper'>
                         {jobData ?.filter( (job)=>{
                             if(searchTerm === '') return job;
                             if(job.position.toLocaleLowerCase().includes(searchTermValue) || job.company.toLocaleLowerCase().includes(searchTermValue))
