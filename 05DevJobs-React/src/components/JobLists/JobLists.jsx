@@ -15,6 +15,23 @@ const JobLists = () => {
             job.location.toLowerCase().includes(searchByLocation.toLowerCase()))
         )
         setJobData(filterData)
+    };
+
+    //filtro por tipo de contrato
+    const filterJobData = (e)=>{
+        const filterValue = e.target.value;
+        if(filterValue === 'full-time'){
+            const filterData = jobs.filter( (job)=> job.contract === 'Full Time')
+            setJobData(filterData)
+        }
+        else if(filterValue === 'part-time'){
+            const filterData = jobs.filter( (job)=> job.contract === 'Part Time')
+            setJobData(filterData)
+        }
+        else if(filterValue === 'freelance'){
+            const filterData = jobs.filter( (job)=> job.contract === 'Freelance')
+            setJobData(filterData)
+        }
     }
 
     return (
@@ -30,6 +47,14 @@ const JobLists = () => {
                             <input type="text" placeholder='Busqueda por Ubicación' value={searchByLocation} onChange={(e)=>setSearchByLocation(e.target.value)}/>
                             <button onClick={locationSearchHandler}>Buscar</button>
                         </div>
+                        <div className='search__panel-03'>
+                            <select name="" id="" onChange={filterJobData}>
+                                <option>Filtrar trabajo por</option>
+                                <option  value="full-time">Full time</option>
+                                <option  value="part-time">Part time</option>
+                                <option  value="freelance">Freelance</option>
+                            </select>
+                        </div>
                     </div>
                     <div className='job__wrapper'>
                         {jobData ?.filter( (job)=>{
@@ -39,6 +64,9 @@ const JobLists = () => {
                         })
                         .map( (item)=>(
                             <div className='job__item' key={item.id} >
+
+                                <img src={item.logo} alt={item.company} />
+                                
                                 <div className='job__content'>
                                     <h6> {item.postedAt} - {item.contract} </h6>
                                     <h1> 
