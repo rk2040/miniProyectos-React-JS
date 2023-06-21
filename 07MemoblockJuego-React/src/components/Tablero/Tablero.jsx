@@ -2,7 +2,7 @@ import React from 'react'
 import './Tablero.css'
 import MemoBlock from '../MemoBlock/MemoBlock'
 
-const Tablero = ({memoBlocks, animating, handleMemoClick}) => {
+const Tablero = ({animating, handleMemoClick, memoBlocks}) => {
     return (
         <>
         <main className='board'>

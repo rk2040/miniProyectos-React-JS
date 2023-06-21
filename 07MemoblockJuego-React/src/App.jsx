@@ -12,7 +12,7 @@ function App() {
 
 
   useEffect( ()=>{
-    const barajadoEmojiList = barajarArray([... emojiList, ... emojiList])
+    const barajadoEmojiList = barajarArray([... emojiList, ... emojiList]);
     setMemoBloquesBarajeados(barajadoEmojiList.map( (emoji, i)=>(
       {index: i, emoji, flipped: false}
     )))
@@ -28,7 +28,7 @@ function App() {
   };
 
   const handleMemoClick = (memoBlock)=>{
-    const memoBlockInvertido = {...memoBlock, flipped: true}
+    const memoBlockInvertido = {...memoBlock, flipped: true};
     let memoBloquesBarajeadosCopy = [...memoBloquesBarajeados];
 
     memoBloquesBarajeadosCopy.splice(memoBlock.index, 1, memoBlockInvertido);
@@ -38,7 +38,7 @@ function App() {
       setSelectedMemoBlock(memoBlock);
     }
     else if(selectedMemoBlock.emoji === memoBlock.emoji){
-      selectedMemoBlock(null);
+      setSelectedMemoBlock(null);
     }
     else{
       setAnimating(true)
