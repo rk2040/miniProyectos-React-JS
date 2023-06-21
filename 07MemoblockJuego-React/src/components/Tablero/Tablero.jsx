@@ -1,9 +1,16 @@
 import React from 'react'
 import './Tablero.css'
+import MemoBlock from '../MemoBlock/MemoBlock'
 
-const Tablero = () => {
+const Tablero = ({memoBlocks}) => {
     return (
-        <div>Tablero</div>
+        <>
+        <main className='board'>
+            {memoBlocks.map( (item, index)=>{
+                return <MemoBlock key={`${index}_${item.emoji}`} memoBlock={item} />
+            })}
+        </main>
+        </>
     )
 }
 
