@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import * as AiIcons from "react-icons/ai";
 import * as FaIcons from "react-icons/fa";
 import * as IoIcons from "react-icons/io";
-import { data } from "./Data";
+import { Data } from "./Data";
 import { keyframes, styled } from "styled-components";
 import SubMenu from "./SubMenu";
 
@@ -22,15 +22,15 @@ const NavBar = () => {
                     <NavIcon to='#'>
                         <FaIcons.FaBars onClick={showSidebar} />
                     </NavIcon>
-                    <SidebarNav sidebar={sideBar} >
+                    <SidebarNav sideBar={sideBar} >
                         <SidebarWrap>
                             <NavIcon to='#' >
+                                <AiIcons.AiOutlineClose onClick={showSidebar} >
+                                </AiIcons.AiOutlineClose>
                             </NavIcon>
-                            <AiIcons.AiOutlineClose onClick={showSidebar} >
-                            </AiIcons.AiOutlineClose>
                             {
-                                data.map( (item, index)=> {
-                                    return <SubMenu key={index} />
+                                Data.map( (item, index)=> {
+                                    return <SubMenu key={index} item={item} close={showSidebar} />
                                 })
                             }
                         </SidebarWrap>
@@ -68,7 +68,7 @@ const SidebarNav = styled.nav`
     justify-content: center;
     position: fixed;
     top: 0;
-    left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+    left: ${({ sideBar })=> sideBar ? "0" : "-100%"};
     transition: 350ms;
     z-index: 10;
 `;
