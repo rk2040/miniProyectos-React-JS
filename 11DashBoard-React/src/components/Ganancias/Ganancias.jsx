@@ -1,9 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { themeColor, hoverEffect } from "../../utils/utils";
+import { IoStatsChart } from 'react-icons/io5'
 
 const Ganancias = () => {
-    return <div><EarningsCard/></div>;
+    return (
+        <>
+    <EarningsCard>
+        <CardContent>
+            <Chart>
+                <IoStatsChart/>
+            </Chart>
+            <EarningsText>Ganancias</EarningsText>
+            <Earning>$3000</Earning>
+            <EarningsIncrease>+ 10% desde el mes pasado</EarningsIncrease>
+        </CardContent>
+    </EarningsCard>
+    </>
+    )
 };
 
 export default Ganancias;
