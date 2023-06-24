@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Ganancias from "../components/Ganancias/Ganancias";
 import Info from "../components/Info/Info";
+import Projects from "../components/Projects/Projects";
+import Facturas from "../components/Facturas/Facturas";
 
 const Home = () => {
     return (
@@ -16,8 +18,24 @@ const Home = () => {
 
                         <ColumnA2>
                             <TitleText>Tus Proyectos</TitleText>
+                            <Projects/>
                         </ColumnA2>
                     </SectionA>
+
+                    <SectionB>
+                        <ColumnB1>
+                            <InvoiceContainer>
+                            <TitleText>Facturas recientes</TitleText>
+                            </InvoiceContainer>
+                        </ColumnB1>
+
+                        <ColumnB2>
+                            <InvoiceContainer>
+                            <TitleText>Facturas recientes</TitleText>
+                            <Facturas/>
+                            </InvoiceContainer>
+                        </ColumnB2>
+                    </SectionB>
                 </SubContainer>
             </Container>
         </>
@@ -91,6 +109,8 @@ const ColumnA2 = styled.div`
 const TitleText = styled.h3`
     height: 20%;
 `;
+
+
 
 const SectionB = styled.div`
     display: flex;
