@@ -20,8 +20,7 @@ export default App
 const Container = styled.div`
   display: flex;
   height: 97vh;
-  /* background: linear-gradient(to bottom right, #ffffff 0%, #e6e4ff 70%); */
-  background: linear-gradient(to bottom right, #6200ff 0%, #6200ff 70%);
+  background: linear-gradient(to bottom right, #ffffff 0%, #e6e4ff 70%);
   border-radius: 2rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     flex-direction:column;

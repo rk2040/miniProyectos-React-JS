@@ -4,6 +4,7 @@ import Ganancias from "../components/Ganancias/Ganancias";
 import Info from "../components/Info/Info";
 import Projects from "../components/Projects/Projects";
 import Facturas from "../components/Facturas/Facturas";
+import Recomendados from "../components/Recomendados/Recomendados";
 
 const Home = () => {
     return (
@@ -25,15 +26,14 @@ const Home = () => {
                     <SectionB>
                         <ColumnB1>
                             <InvoiceContainer>
-                            <TitleText>Facturas recientes</TitleText>
+                                <TitleText>Facturas recientes</TitleText>
+                                <Facturas/>
                             </InvoiceContainer>
                         </ColumnB1>
 
                         <ColumnB2>
-                            <InvoiceContainer>
-                            <TitleText>Facturas recientes</TitleText>
-                            <Facturas/>
-                            </InvoiceContainer>
+                            <TitleText>Proyectos recomendados</TitleText>
+                            <Recomendados/>
                         </ColumnB2>
                     </SectionB>
                 </SubContainer>
@@ -47,8 +47,7 @@ export default Home;
 const Container = styled.div`
     width: 80%;
     border-bottom-right-radius: 2rem;
-    /* background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%); */
-    background: linear-gradient(to bottom right, #006100 0%, #006100 70%);
+    background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%);
     border-top-right-radius: 2rem;
     margin: 1rem 8rem 1rem 4rem;
     @media screen and (min-width: 320px) and (max-width: 1080px) {
