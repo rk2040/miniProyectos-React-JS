@@ -1,8 +1,13 @@
 import React from 'react'
+import Navigation from '../components/Navigation/Navigation'
 
 const MenuPrincipal = () => {
     return (
-        <div>MenuPrincipal</div>
+        <>
+        <main>
+            <Navigation/>
+        </main>
+        </>
     )
 }
 
