@@ -6,15 +6,27 @@ import { useState } from 'react'
 const Navigation = () => {
     const [click, setClick] = useState(false);
 
+    const scrollTo = (id)=>{
+        let element = document.getElementById(id);
+        //element.scrollIntoView() esto hace que el elemento que estemos navegando ocupe el 100% de la pantalla del elemento el cual estemos navegando
+        element.scrollIntoView({
+            behavior: 'smooth',  // behavior (activador)
+            block: 'start',      // Que bloque va a ser el primero en iniciar. El inicio (start) desde la parte de arriba
+            inline: 'nearest'    // En linea le dice que se desplace al elemento mas cercano
+        });
+        setClick(!click);
+    }
+
     return (
-        <Section>
+        <Section id='navigation' >
             <NavBar>
                 <Logo/>
                 <HamburgerMenu click={click} onClick={()=> setClick(!click) } >
 
                 </HamburgerMenu>
                 <Menu click={click} >
-                    <MenuItem>Home</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('home')} >Home</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('about')} >Acerca de</MenuItem>
                 </Menu>
             </NavBar>
         </Section>
@@ -51,6 +63,7 @@ const Menu = styled.ul`
         right: 0;
         bottom: 0;
         width: 100vw;
+        z-index: 1;
         background-color: ${(props)=> `rgba(${props.theme.bodyRgba}, 0.85)`};
         backdrop-filter: blur(2px);
         transform: ${(props)=> (props.click ? 'translateY(0)' : 'translateY(1000%)')};
@@ -116,5 +129,15 @@ const HamburgerMenu = styled.span`
         background: ${(props)=> props.theme.text};
         position: absolute;
         transition: all 300ms ease;
+    }
+
+    &::after{
+        top: ${(props)=> props.click ? '0.3rem' : '0.5rem'};
+        transform: ${(props)=> props.click ? 'rotate(-40deg)' : 'rotate(0)' };
+    }
+
+    &::before{
+        bottom: ${(props)=> props.click ? '0.3rem' : '0.5rem'};
+        transform: ${(props)=> props.click ? 'rotate(40deg)' : 'rotate(0)' };
     }
 `
