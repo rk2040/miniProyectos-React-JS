@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import "@fontsource/sora"
+import '@fontsource/akaya-telivigala'
 
 export const GlobalStyles = createGlobalStyle`
     *{
@@ -9,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     body{
         font-family: 'Sora', sans-serif;
+        overflow-x: hidden;
     }
     h1,h2,h3,h4,h5,h6{
         margin: 0;

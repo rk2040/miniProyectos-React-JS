@@ -15,7 +15,7 @@ const Logo = () => {
 export default Logo
 
 const LogoText = styled.h1`
-    font-family: 'AkayaTelivigala', cursive;
+    font-family: 'Akaya Telivigala', cursive;
     font-size: ${(props)=> props.theme.fontxxxl};
     color: ${(props)=> props.theme.text};
     transition: all 200ms ease;

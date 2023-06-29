@@ -55,6 +55,12 @@ const Title = styled.h2`
     align-self: flex-start;
     transition: all 500ms ease-in-out;
 
+    span{
+        text-transform: uppercase;
+        font-family: 'Akaya Telivigala'
+
+    }
+
     .text-1{
         color: blue;
     }

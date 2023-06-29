@@ -1,14 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled,{ keyframes } from 'styled-components'
 import TypeWriterText from '../TypeWriterText/TypeWriterText'
+import CoverVideo from '../CoverVideo/CoverVideo'
+import imgReact from '../../assets/react.png'
 
 const Home = () => {
     return (
         <Section id='home'>
             <Container>
                 <Box>
-                    <TypeWriterText></TypeWriterText>
+                    <TypeWriterText/>
                 </Box>
+                <Box>
+                    <CoverVideo/>
+                </Box>
+                <Round>
+                    <img src={imgReact} alt="Logo React" width={500} height={400} />
+                </Round>
             </Container>
         </Section>
     )
@@ -34,6 +42,16 @@ const Container = styled.div`
     @media (max-width: 64em){
         width: 85%;
     }
+
+    @media (max-width: 48em){
+        flex-direction: column-reverse;
+        width: 100%;
+
+        & > *:first-child{
+            width:100%;
+            margin-top: 2rem;
+        }
+    }
 `
 
 const Box = styled.div`
@@ -43,4 +61,35 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`
+
+
+const rotate = keyframes`
+    100%{
+        transform: rotate(1turn);
+    }
+`
+const Round = styled.div`
+    position: absolute;
+    bottom: 2rem;
+    right: 90%;
+    width: 7rem;
+    
+    img{
+        width: 100%;
+        height: auto;
+        animation: ${rotate} 6000ms linear infinite reverse;
+    }
+
+    @media (max-width: 64em){
+        width: 4rem;
+        height: 4rem;
+        left: none;
+        right: 2rem;
+        bottom: 100%;
+    }
+
+    @media (max-width: 48em){
+        right: 1.5rem;
+    }
 `
