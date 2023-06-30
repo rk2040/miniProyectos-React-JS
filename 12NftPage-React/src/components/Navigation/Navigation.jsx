@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Logo from '../Logo/Logo'
 import { useState } from 'react'
+import Roadmap from '../Sections/Roadmap'
 
 const Navigation = () => {
     const [click, setClick] = useState(false);
@@ -27,6 +28,7 @@ const Navigation = () => {
                 <Menu click={click} >
                     <MenuItem onClick={()=> scrollTo('home')} >Home</MenuItem>
                     <MenuItem onClick={()=> scrollTo('about')} >Acerca de</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('roadmap')} >RoadMap</MenuItem>
                 </Menu>
             </NavBar>
         </Section>
