@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import Home from '../components/Sections/Home'
 import About from '../components/Sections/About'
 import Roadmap from '../components/Sections/Roadmap'
+import Showcase from '../components/Sections/Showcase'
 
 const MenuPrincipal = () => {
     return (
@@ -17,6 +18,7 @@ const MenuPrincipal = () => {
                 <Home/>
                 <About/>
                 <Roadmap/>
+                <Showcase/>
             </ThemeProvider>
         </main>
         </>
