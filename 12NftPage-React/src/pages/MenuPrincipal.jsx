@@ -5,6 +5,7 @@ import { GlobalStyles } from '../styles/GlobalStyles'
 import { ThemeProvider } from 'styled-components'
 import Home from '../components/Sections/Home'
 import About from '../components/Sections/About'
+import Roadmap from '../components/Sections/Roadmap'
 
 const MenuPrincipal = () => {
     return (
@@ -15,6 +16,7 @@ const MenuPrincipal = () => {
                 <Navigation />
                 <Home/>
                 <About/>
+                <Roadmap/>
             </ThemeProvider>
         </main>
         </>
