@@ -54,7 +54,7 @@ const Showcase = () => {
 
     return (
         <>
-        <Section>
+        <Section id="cards">
             <Row direction="none" ref={Row1Ref}>
                 <NftItem img={img1} number={840} price={25} passRef={Row1Ref}> </NftItem>
                 <NftItem img={img2} number={790} price={20} passRef={Row1Ref}> </NftItem>

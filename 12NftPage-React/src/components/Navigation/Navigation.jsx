@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Logo from '../Logo/Logo'
 import { useState } from 'react'
 import Roadmap from '../Sections/Roadmap'
+import Showcase from '../Sections/Showcase'
 
 const Navigation = () => {
     const [click, setClick] = useState(false);
@@ -29,6 +30,9 @@ const Navigation = () => {
                     <MenuItem onClick={()=> scrollTo('home')} >Home</MenuItem>
                     <MenuItem onClick={()=> scrollTo('about')} >Acerca de</MenuItem>
                     <MenuItem onClick={()=> scrollTo('roadmap')} >RoadMap</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('cards')} >Show Case</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('team')} >Team</MenuItem>
+                    <MenuItem onClick={()=> scrollTo('preguntas')} >Preguntas</MenuItem>
                 </Menu>
             </NavBar>
         </Section>
