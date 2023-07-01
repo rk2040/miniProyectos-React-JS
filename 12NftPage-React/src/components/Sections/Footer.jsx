@@ -13,14 +13,14 @@ const Footer = () => {
         element.scrollIntoView({
             behavior: 'smooth',
             block: 'nearest',
-            inline: 'nearest'
+            inline: 'nearest',
         })
     }
 
     return (
         <Section >
             <Banner/>
-            
+
             <Container>
                 <Left>
                     <Logo/>

@@ -10,6 +10,7 @@ import Showcase from '../components/Sections/Showcase'
 import Team from '../components/Sections/Team'
 import Preguntas from '../components/Sections/Preguntas'
 import Footer from '../components/Sections/Footer'
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop'
 
 const MenuPrincipal = () => {
     return (
@@ -25,6 +26,7 @@ const MenuPrincipal = () => {
                 <Team/>
                 <Preguntas/>
                 <Footer/>
+                <ScrollToTop/>
             </ThemeProvider>
         </main>
         </>

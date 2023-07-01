@@ -25,7 +25,7 @@ const Home = () => {
 export default Home
 
 const Section = styled.section`
-    min-height: ${(props)=> `(calc(100vh - ${props.theme.navHeight}))`}; //Calcula el alto total 100vh menos el alto del nav. asi ocupa todo menos el nav
+    min-height: ${(props)=> `calc(100vh - ${props.theme.navHeight})`}; //Calcula el alto total 100vh menos el alto del nav. asi ocupa todo menos el nav
     width: 100vw;
     position: relative;
     background-color: ${(props)=> props.theme.body};
