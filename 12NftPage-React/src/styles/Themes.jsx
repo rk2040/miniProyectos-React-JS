@@ -4,7 +4,7 @@ export const Light = {
     text: "#202020",
     bodyRgba: "255, 255, 255",
     textRgba: "32,32,32",
-    carouselColor: "#61d2fb",
+    carouselColor: "#eeeddd",
     fontxs: "0.75em",
     fontsm: "0.875em",
     fontmd: "1em",

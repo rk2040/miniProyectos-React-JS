@@ -1,18 +1,27 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import styled,{ keyframes } from 'styled-components'
-import TypeWriterText from '../TypeWriterText/TypeWriterText'
-import CoverVideo from '../CoverVideo/CoverVideo'
+// import TypeWriterText from '../TypeWriterText/TypeWriterText'
+// import CoverVideo from '../CoverVideo/CoverVideo'
 import imgReact from '../../assets/react.png'
+import Loading from '../Loading/Loading'
+
+const TypeWriterText = lazy( ()=> import('../TypeWriterText/TypeWriterText'))
+
+const CoverVideo = lazy( ()=> import('../CoverVideo/CoverVideo'))
 
 const Home = () => {
     return (
         <Section id='home'>
             <Container>
                 <Box>
-                    <TypeWriterText/>
+                    <Suspense fallback={<Loading/>} >
+                        <TypeWriterText/>
+                    </Suspense>
                 </Box>
                 <Box>
-                    <CoverVideo/>
+                    <Suspense fallback={<Loading/>} >
+                        <CoverVideo/>
+                    </Suspense>
                 </Box>
                 <Round>
                     <img src={imgReact} alt="Logo React" width={500} height={400} />

@@ -1,51 +1,64 @@
-import React from 'react'
-import { styled, ThemeProvider } from 'styled-components'
-import Carousel from '../Carousel/Carousel'
-import Button from '../Button/Button'
-import { Dark } from '../../styles/Themes'
+import React, { lazy, Suspense } from "react";
+import { styled, ThemeProvider } from "styled-components";
+// import Carousel from '../Carousel/Carousel' // pase este componente como asincronico con 'lazy' para optimizar la carga de la pagina ya que este comp es pesado
+import Button from "../Button/Button";
+import { Dark } from "../../styles/Themes";
+import Loading from "../Loading/Loading";
+
+const Carousel = lazy(() => import("../Carousel/Carousel"));
 
 const About = () => {
     return (
-        <Section id={'about'}>
+        <Section id={"about"}>
             <Container>
                 <Box>
-                    <Carousel></Carousel>
+                    <Suspense fallback={<Loading />}>
+                        <Carousel />
+                    </Suspense>
                 </Box>
-
                 <Box>
                     <Title>
-                        Bienvenido al Club <br/> de los bichos Raros
+                        Bienvenido al club <br /> de los bichos raros
                     </Title>
                     <SubText>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam sint sit quidem, ab praesentium odit unde, dignissimos modi doloribus laborum architecto molestias ducimus vitae atque cumque! Doloremque obcaecati omnis beatae.
+                        WEIRDOS CLUB es una colección privada: coleccionables
+                        digitales únicos. Los Weirdos se almacenan como tokens
+                        ERC-721 en la cadena de bloques de Ethereum y se alojan
+                        en IPFS
                     </SubText>
                     <SubTextLight>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam ut consequuntur vitae fugiat, quos ad debitis ea cupiditate explicabo consequatur sunt voluptatem excepturi nulla autem quia quaerat, rem totam esse.
+                        Con más de 200 rasgos dibujados a mano, cada NFT es
+                        único y viene con una membresía a un grupo exclusivo de
+                        inversores exitosos. Únase a una ambiciosa comunidad en
+                        constante crecimiento con múltiples beneficios y
+                        utilidades.
                     </SubTextLight>
 
                     <ButtonContainer>
                         <ThemeProvider theme={Dark}>
-                            <Button text='Unirse a Discord' link='#' >Theme</Button>
+                            <Button text="Unirse a Discord" link="#">
+                                Theme
+                            </Button>
                         </ThemeProvider>
                     </ButtonContainer>
                 </Box>
             </Container>
         </Section>
-    )
-}
+    );
+};
 
-export default About
+export default About;
 
 const Section = styled.section`
     min-height: 100vh;
     width: 100%;
-    background-color: ${(props)=> props.theme.text};
+    background-color: ${(props) => props.theme.text};
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
-`
+`;
 
 const Container = styled.div`
     width: 75%;
@@ -54,21 +67,21 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 64em){
+    @media (max-width: 64em) {
         width: 100%;
         flex-direction: column;
 
-        & > *:last-child{
+        & > *:last-child {
             width: 80%;
         }
     }
 
-    @media (max-wodth: 40em){
-        & > *:last-child{
+    @media (max-wodth: 40em) {
+        & > *:last-child {
             width: 90%;
         }
     }
-`
+`;
 
 const Box = styled.div`
     width: 50%;
@@ -79,78 +92,78 @@ const Box = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 40em){
+    @media (max-width: 40em) {
         min-height: 50vh;
     }
-`
+`;
 
 const Title = styled.h2`
-    font-size: ${(props)=> props.theme.fontxxl};
+    font-size: ${(props) => props.theme.fontxxl};
     text-transform: capitalize;
-    color: ${(props)=> props.theme.body};
+    color: ${(props) => props.theme.body};
     align-self: flex-start;
     width: 80%;
     margin: 0 auto;
 
-    @media (max-width: 64em){
+    @media (max-width: 64em) {
         width: 100%;
         text-align: center;
     }
 
-    @media (max-width: 40em){
-        font-size: ${(props)=> props.theme.fontxl};
+    @media (max-width: 40em) {
+        font-size: ${(props) => props.theme.fontxl};
     }
 
-    @media (max-width: 30em){
-        font-size: ${(props)=> props.theme.fontlg};
+    @media (max-width: 30em) {
+        font-size: ${(props) => props.theme.fontlg};
     }
-`
+`;
 
 const SubText = styled.p`
-    font-size: ${(props)=> props.theme.fontlg};
-    color: ${(props)=> props.theme.body};
+    font-size: ${(props) => props.theme.fontlg};
+    color: ${(props) => props.theme.body};
     align-self: flex-start;
     width: 80%;
     margin: 1 auto;
-    font-weight:400;
+    font-weight: 400;
 
-    @media (max-width: 64em){
+    @media (max-width: 64em) {
         width: 100%;
         text-align: center;
-        font-size: ${(props)=> props.theme.fontmd};
+        font-size: ${(props) => props.theme.fontmd};
     }
 
-    @media (max-width: 40em){
-        font-size: ${(props)=> props.theme.fontmd};
+    @media (max-width: 40em) {
+        font-size: ${(props) => props.theme.fontmd};
     }
 
-    @media (max-width: 30em){
-        font-size: ${(props)=> props.theme.fontsm};
+    @media (max-width: 30em) {
+        font-size: ${(props) => props.theme.fontsm};
     }
-`
+`;
 
 const SubTextLight = styled.p`
-font-size: ${(props)=> props.theme.fontmd};
-color: ${(props)=> `rgba(${props.theme.bodyRgba}, 0.6)`};
-align-self: flex-start;
-width: 80%;
-margin: 1 auto;
-font-weight:400;
+    font-size: ${(props) => props.theme.fontmd};
+    color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.6)`};
+    align-self: flex-start;
+    width: 80%;
+    margin: 1 auto;
+    font-weight: 400;
 
-@media (max-width: 64em){
-    width: 100%;
-    text-align: center;
-    font-size: ${(props)=> props.theme.fontsm};
-}
+    @media (max-width: 64em) {
+        width: 100%;
+        text-align: center;
+        font-size: ${(props) => props.theme.fontsm};
+    }
 
-@media (max-width: 40em){
-    font-size: ${(props)=> props.theme.fontsm};
-}
+    @media (max-width: 40em) {
+        font-size: ${(props) => props.theme.fontsm};
+    }
 
-@media (max-width: 30em){
-    font-size: ${(props)=> props.theme.fontxs};
-}
-`
+    @media (max-width: 30em) {
+        font-size: ${(props) => props.theme.fontxs};
+    }
+`;
 
 const ButtonContainer = styled.div`
     width: 80%;
@@ -158,10 +171,10 @@ const ButtonContainer = styled.div`
     display: flex;
     align-items: flex-start;
 
-    @media (max-width: 64em){
-    width: 100%;
-    a{
-        margin: 0 auto;
+    @media (max-width: 64em) {
+        width: 100%;
+        a {
+            margin: 0 auto;
+        }
     }
-}
-`
+`;

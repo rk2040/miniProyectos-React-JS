@@ -1,23 +1,21 @@
 import { useRef } from 'react'
 import './App.css'
+import { useContext, useState, createContext } from 'react'
+import C1 from './C1';
+
+export const userContext = createContext();
 
 function App() {
-  const colorRef = useRef(null);
-
-  const cambiarColor = ()=>{
-    // colorRef.current.className='verde';
-    colorRef.current.style=`
-    width: 500px`;
-  }
+  const [user, setUser] = useState('Rob');
 
   return (
     <>
-    <div className='app'>
-      <div className='caja' ref={colorRef} >
-        Hola Mundo
+    <userContext.Provider value={user} >
+      <div className='App'>
+        <C1/>
       </div>
-      <button onClick={cambiarColor}>Cambiar</button>
-    </div>
+
+    </userContext.Provider>
     </>
   )
 }
