@@ -39,6 +39,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
   background: ${({theme})=> theme.bgtotal};
+  transition: all 300ms;
 
   &.active{
     grid-template-columns: 300px auto;
