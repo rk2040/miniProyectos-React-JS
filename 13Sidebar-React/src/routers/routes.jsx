@@ -5,6 +5,8 @@ import Estadisticas from '../pages/Estadisticas'
 import Productos from '../pages/Productos'
 import Diagramas from '../pages/Diagramas'
 import Reportes from '../pages/Reportes'
+import Configuracion from '../pages/Configuracion'
+import Salir from '../pages/Salir'
 
 const MyRoutes = () => {
     return (
@@ -14,6 +16,8 @@ const MyRoutes = () => {
             <Route path='/productos' element={<Productos/>} />
             <Route path='/diagramas' element={<Diagramas/>} />
             <Route path='/reportes' element={<Reportes/>} />
+            <Route path='/configuracion' element={<Configuracion/>} />
+            <Route path='/salir' element={<Salir/>} />
         </Routes>
     )
 }

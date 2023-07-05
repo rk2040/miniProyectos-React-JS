@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from "styled-components";
 import logoReact from '../../assets/react.svg'
 import { v } from '../../styles/Variables';
+import { ThemeContext } from '../../App';
+import { NavLink, useLocation } from 'react-router-dom';
+
 import { AiOutlineLeft, AiOutlineHome, AiOutlineAppstoreAdd, AiOutlineSetting } from 'react-icons/ai';
 import { ImStatsBars2 } from 'react-icons/im';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 import { BsDiagram3 } from 'react-icons/bs';
 import { IoMdExit } from 'react-icons/io';
-import { NavLink, useLocation } from 'react-router-dom';
 
 const Sidebar = ( {sidebarOpen, setSidebarOpen} ) => {
     const ModSidebarOpen = ()=>{
         setSidebarOpen(!sidebarOpen);
     }
 
+    const {theme, setTheme} = useContext(ThemeContext)
+    
+    const CambiarTheme = ()=>{
+        setTheme( (theme)=>(theme==='light' ? 'dark' : 'light' ))
+    }
+
     return (
-        <Container isOpen={sidebarOpen} >
+        <Container isOpen={sidebarOpen} themeUse={theme} >
             <button className='Sidebarbutton' onClick={ModSidebarOpen} >
                 <AiOutlineLeft/>
             </button>
@@ -52,6 +60,26 @@ const Sidebar = ( {sidebarOpen, setSidebarOpen} ) => {
                 ))
             }
             <Divider/>
+
+            <div className='ThemeContent'>
+                {
+                    sidebarOpen && <span className='titletheme'>Dark mode</span>
+                }
+                <div className='ToggleContent'>
+                    <div className='grid theme-container'>
+                        <div className='content'>
+                            <div className='demo'>
+                                <label className='switch' >
+                                    <input type="checkbox" className='theme-swither' onClick={CambiarTheme} />
+                                    <span className='slider round'>
+
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </Container>
     )
@@ -194,6 +222,98 @@ const Container = styled.div`
         }
 
         
+    }
+
+    .ThemeContent{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .titletheme{
+            display: block;
+            padding: 10px;
+            font-weight: 700;
+            opacity: ${({isOpen})=> (isOpen ? `1` : `0`)};
+            transition: all 300ms;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ToggleContent{
+            margin: ${({isOpen})=> (isOpen ? `auto 40px` : `auto 15px`)};
+            height: 20px;
+            border-radius: 10px;
+            transition: all 300ms;
+            position: relative;
+
+            .theme-container{
+                background-blend-mode: multiply, multiply;
+                transition: 400ms;
+
+                .grid{
+                    display: grid;
+                    justify-items: center;
+                    align-items: center;
+                    height: 100vh;
+                    width: 100vw;
+                    font-family: 'Lato', sans-serif;
+                }
+
+                .demo{
+                    font-size: 32px;
+
+                    .switch{
+                        position: relative;
+                        display: inline-block;
+                        width: 60px;
+                        height: 34px;
+                        
+                        .theme-swither{
+                            opacity: 0;
+                            width: 0;
+                            height: 0;
+
+                            &:checked +.slider:before {
+                                left: 4px;
+                                content: '🌑';
+                                transform: translateX(26px);
+                            }
+                        }
+
+                        .slider{
+                            position: absolute;
+                            cursor: pointer;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: ${({themeUse})=> (themeUse === 'light' ? v.lightcheckbox : v.checkbox)};
+                            transition: 400ms;
+
+                            &::before{
+                                position: absolute;
+                                content: '☀️';
+                                width: 0px;
+                                height: 0px;
+                                left: -10px;
+                                top: 16px;
+                                line-height: 0px;
+                                transition: 400ms;
+                            }
+
+                            &.round{
+                                border-radius: 34px;
+
+                                &::before{
+                                    border-radius: 50%;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
     
 `

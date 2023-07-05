@@ -13,4 +13,5 @@ export default Estadisticas
 
 
 const Container = styled.div`
+    height: 100vh;  
 `

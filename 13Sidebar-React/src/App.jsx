@@ -11,9 +11,6 @@ export const ThemeContext = React.createContext(null);
 function App() {
     const [theme, setTheme] = useState("light");
     const themeStyle = theme === "light" ? Light : Dark;
-    const CambiarTheme = ()=>{
-      setTheme( (theme)=>(theme==='light' ? 'dark' : 'light' ))
-    }
 
     const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -44,4 +41,6 @@ const Container = styled.div`
   &.active{
     grid-template-columns: 300px auto;
   }
+  
+  color: ${({theme})=> theme.text};
 `;

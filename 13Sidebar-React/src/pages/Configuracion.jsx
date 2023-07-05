@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Diagramas = () => {
+const Configuracion = () => {
     return (
         <Container>
-            <div>Diagramas</div>
+            <div>Configuracion</div>
         </Container>
     )
 }
 
-export default Diagramas
+export default Configuracion
 
 
 const Container = styled.div`

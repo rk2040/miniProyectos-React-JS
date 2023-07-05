@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Diagramas = () => {
+const Salir = () => {
     return (
         <Container>
-            <div>Diagramas</div>
+            <div>Salir</div>
         </Container>
     )
 }
 
-export default Diagramas
+export default Salir
 
 
 const Container = styled.div`
-    height: 100vh;  
+    height: 100vh;
 `
