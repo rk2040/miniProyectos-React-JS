@@ -130,7 +130,6 @@ const secondaryLinksArray = [
 ];
 //#endregion Data links
 
-
 //#region Styled component
 const Container = styled.div`
     background: ${(props)=> props.theme.bg};
