@@ -1,59 +1,142 @@
-import React from 'react'
-import styled from 'styled-components'
-import sinfoto from '../assets/sinfoto_.png'
-import BtnOperaciones from '../components/BtnOperaciones'
-import {FcPicture} from 'react-icons/fc'
-import { useRef } from 'react'
+import React, { useState } from "react";
+import styled from "styled-components";
+import sinfoto from "../assets/sinfoto_.png";
+import BtnOperaciones from "../components/BtnOperaciones";
+import { FcPicture } from "react-icons/fc";
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
 
 const ProductosConfig = () => {
+    const [fileurl, setFileurl] = useState(sinfoto);
+    const [file, setFile] = useState([]);
+    const [estadoImg, setEstadoImg] = useState(false);
+
     const ref = useRef(null);
 
-    function abrirImagenes(){
+    function subirimgStorage(e){
+        //carga local
+        let fileLocal = e.target.files;
+        let fileReaderLocal = new FileReader();
+
+        fileReaderLocal.readAsDataURL(fileLocal[0]);
+        const tipoimg = e.target.files[0];
+
+        // validaciones
+        if(tipoimg.type.includes('image/png')){
+            if(fileReaderLocal && fileLocal && fileLocal.length){
+                fileReaderLocal.onload = function load(){
+                    setFileurl(fileReaderLocal.result)
+                }
+                //preparar img para storage
+                let fileList = e.target.files;
+                let fileReader = new FileReader();
+
+                fileReader.readAsArrayBuffer(fileList[0]);
+                fileReader.onload = function(){
+                    let imagenData = fileReader.result;
+                    setFile(imagenData);
+                }
+            }
+        }
+    }
+
+    function abrirImagenes() {
         ref.current.click();
+    }
+
+    const {
+        reset,
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm();
+
+    function insertar(){
+        const img = file.length;
+
+        if(img != 0){
+            setEstadoImg(false);
+        }
+        else{
+            setEstadoImg(true);
+        }
     }
 
     return (
         <Container>
-            <div className='sub-contenedor'>
-                <div className='header'>
+            <div className="sub-contenedor">
+                <div className="header">
                     <h1>📤Registro de Productos</h1>
                 </div>
 
                 <div className="pictureContainer">
-                    <img src={sinfoto} alt="" />
+                    <img src={fileurl} alt="" />
+                    <BtnOperaciones
+                        titulo="Cargar Imagen"
+                        icono={<FcPicture />}
+                        funcion={abrirImagenes}
+                    />
+                    <input
+                        ref={ref} onChange={subirimgStorage}
+                        type="file"
+                        accept="image/png"
+                        hidden={true}
+                    />{" "}
+                    {/* con useRef le "robamos" las propiedades para que las tenga nuestro boton, y lo ocutamos con hidden o en css de styledComponents */}
 
-                    <BtnOperaciones titulo='Cargar Imagen' icono={<FcPicture/>} funcion={abrirImagenes} />
-
-                    <input ref={ref} type="file" accept='image/png' hidden={true} /> {/* con useRef le "robamos" las propiedades para que las tenga nuestro boton, y lo ocutamos con hidden o en css de styledComponents */}
+                    {
+                        estadoImg && <p>Seleccione una imagen</p>
+                    }
                 </div>
 
-                <form action="" className='entradas'>
+                <form action="" className="entradas" onSubmit={handleSubmit(insertar)} >
                     <ContainerInputs>
-                        <div className='subcontainer'>
+                        <div className="subcontainer">
                             <h4>Descripción</h4>
-                            <Inputs placeholder='Ingrese una Descripción' />
+                            <Inputs type="text" placeholder="Ingrese una Descripción" {...register('descripcion', {required:true, maxLength:20})} />
                         </div>
+                        {
+                            errors.descripcion?.type === 'required' && (
+                                <p>Ingrese una descripción</p>
+                            )
+                        }
+                        {
+                            errors.descripcion?.type === 'maxLength' && (
+                                <p>Maximo 10 caracteres</p>
+                            )
+                        }
                     </ContainerInputs>
 
                     <ContainerInputs>
-                        <div className='subcontainer'>
+                        <div className="subcontainer">
                             <h4>Precio</h4>
-                            <Inputs placeholder='Ingrese un Precio' />
+                            <Inputs step={'0.01'} type="number" placeholder="Ingrese un Precio" {...register ('precio', {required:true, valueAsNumber:true})} />
                         </div>
+                        {
+                            errors.precio?.type === 'required' && (
+                                <p>Ingrese un precio</p>
+                            )
+                        }
+                        {
+                            errors.precio?.type === 'valueAsNumber' && (
+                                <p>El valor debe ser un numero</p>
+                            )
+                        }
                     </ContainerInputs>
 
-                    <div className='footercontent'>
-                        <BtnOperaciones titulo='Cargar Imagen' icono={<FcPicture/>} funcion={abrirImagenes} />
+                    <div className="footercontent">
+                        <BtnOperaciones
+                            titulo="Enviar"
+                            icono={<FcPicture />}
+                        />
                     </div>
                 </form>
-                
             </div>
         </Container>
-    )
-}
+    );
+};
 
-export default ProductosConfig
-
+export default ProductosConfig;
 
 const Container = styled.div`
     position: fixed;
@@ -65,39 +148,39 @@ const Container = styled.div`
     height: 100%;
     width: 100%;
 
-    .sub-contenedor{
+    .sub-contenedor {
         width: 80%;
         background-color: #e7ebf0;
         border-radius: 10px;
         padding: 10px 20px;
         margin: 0 20px;
 
-        .header{
+        .header {
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 15px;
         }
 
-        .pictureContainer{
+        .pictureContainer {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 20px;
 
-            img{
-                width:100px;
+            img {
+                width: 100px;
                 object-fit: cover;
             }
-            
+
             /* input{
                 display: none;
             } */
         }
 
-        .entradas{
-            .footercontent{
+        .entradas {
+            .footercontent {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -107,7 +190,7 @@ const Container = styled.div`
             }
         }
     }
-`
+`;
 
 const ContainerInputs = styled.div`
     display: flex;
@@ -116,14 +199,14 @@ const ContainerInputs = styled.div`
     align-items: center;
     flex-direction: column;
 
-    .subcontainer{
+    .subcontainer {
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
         gap: 10px;
     }
-`
+`;
 const Inputs = styled.input`
     border: 2px solid #e8e8e8;
     padding: 15px;
@@ -135,11 +218,11 @@ const Inputs = styled.input`
     color: white;
     text-align: start;
     width: 70%;
-    
-    &:focus{
+
+    &:focus {
         outline-color: white;
         background-color: #212121;
         color: #e8e8e8;
         box-shadow: 5px 5px #888888;
     }
-`
+`;
