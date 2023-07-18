@@ -6,6 +6,8 @@ import { FcPicture } from "react-icons/fc";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
+import { InsertarProductos, EditarUrlImg, SubirImgStorage } from '../api/Aproductos';
+
 const ProductosConfig = () => {
     const [fileurl, setFileurl] = useState(sinfoto);
     const [file, setFile] = useState([]);
@@ -51,11 +53,20 @@ const ProductosConfig = () => {
         handleSubmit,
     } = useForm();
 
-    function insertar(){
+    async function insertar(data){
         const img = file.length;
 
         if(img != 0){
             setEstadoImg(false);
+            const p = {
+                descripcion: data.descripcion,
+                precio: data.precio,
+                icono:  '-',
+            };
+            const id = await InsertarProductos(p);
+            const resptUrl = await SubirImgStorage(id, file);
+
+            await EditarUrlImg(id, resptUrl);
         }
         else{
             setEstadoImg(true);
