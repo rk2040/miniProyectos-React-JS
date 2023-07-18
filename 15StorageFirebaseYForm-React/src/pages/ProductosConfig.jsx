@@ -5,10 +5,14 @@ import BtnOperaciones from "../components/BtnOperaciones";
 import { FcPicture } from "react-icons/fc";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { Spinner } from "../components/Spinner";
 
-import { InsertarProductos, EditarUrlImg, SubirImgStorage } from '../api/Aproductos';
+import { InsertarProductos, EditarUrlImg, SubirImgStorage, ValidarDatosRepetidos } from '../api/Aproductos';
+
+import swal from 'sweetalert';
 
 const ProductosConfig = () => {
+    const [loading, setLoading] = useState(false);
     const [fileurl, setFileurl] = useState(sinfoto);
     const [file, setFile] = useState([]);
     const [estadoImg, setEstadoImg] = useState(false);
@@ -54,19 +58,44 @@ const ProductosConfig = () => {
     } = useForm();
 
     async function insertar(data){
+
         const img = file.length;
 
         if(img != 0){
+            setLoading(true);
             setEstadoImg(false);
             const p = {
                 descripcion: data.descripcion,
                 precio: data.precio,
                 icono:  '-',
             };
-            const id = await InsertarProductos(p);
-            const resptUrl = await SubirImgStorage(id, file);
+            const rptRepetido = await ValidarDatosRepetidos(p);
 
-            await EditarUrlImg(id, resptUrl);
+            if(rptRepetido == 0){
+                const id = await InsertarProductos(p);
+
+                const resptUrl = await SubirImgStorage(id, file);
+    
+                await EditarUrlImg(id, resptUrl);
+    
+                setLoading(false);
+                reset({descripcion: '', precio: ''});
+                setFileurl(sinfoto);
+                
+                swal({
+                    title: "Good job!",
+                    text: "You clicked the button!",
+                    icon: "success",
+                });
+            }
+            else{
+                setLoading(false);
+                swal({
+                    title: "Datos Repetidos!",
+                    text: "Ya tienes un registro con esa descripción!",
+                    icon: "warning",
+                });
+            }
         }
         else{
             setEstadoImg(true);
@@ -76,6 +105,9 @@ const ProductosConfig = () => {
     return (
         <Container>
             <div className="sub-contenedor">
+                {
+                    loading? <Spinner/> : '' // ternario para ver o no el spinner de carga
+                }
                 <div className="header">
                     <h1>📤Registro de Productos</h1>
                 </div>

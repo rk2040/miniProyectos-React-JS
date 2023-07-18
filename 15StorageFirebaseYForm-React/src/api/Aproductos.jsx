@@ -1,5 +1,5 @@
 import { db } from "./firebase.config";
-import { addDoc, collection, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
 const conexion = collection(db, 'productos');
@@ -26,4 +26,21 @@ export async function SubirImgStorage(id, file){
 
 export async function EditarUrlImg(id, url){
     await updateDoc(doc(db, 'productos', id), {icono:url});
+}
+
+export async function ValidarDatosRepetidos(p){
+    try {
+        const rpt = [];
+        const q = query(conexion, where('descripcion', '==', p.descripcion));
+        const queryConsulta = await getDocs(q);
+
+        queryConsulta.forEach( (doc)=>{
+            rpt.push(doc.data());
+        });
+
+        return rpt.length;
+    } 
+    catch (error) {
+        console.log(error);
+    }
 }
